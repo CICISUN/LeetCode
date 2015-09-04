@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class permuteUnique {
-	public ArrayList<ArrayList<Integer>> permuteUnique(int[] num) {
+	public static ArrayList<ArrayList<Integer>> permuteUnique(int[] num) {
         ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
         if(num == null || num.length == 0)
             return result;
@@ -16,7 +16,7 @@ public class permuteUnique {
         return result;
     }
     
-    public void helper(ArrayList<ArrayList<Integer>> result, ArrayList<Integer> list, int[] visited, int[] num) {
+    public static void helper(ArrayList<ArrayList<Integer>> result, ArrayList<Integer> list, int[] visited, int[] num) {
         if(list.size() == num.length) {
             result.add(new ArrayList<Integer>(list));
             return;
@@ -36,7 +36,8 @@ public class permuteUnique {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		int[] A = {1,1,2};
+		System.out.println(permuteUnique(A));
 	}
 
 }
