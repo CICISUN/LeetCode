@@ -18,18 +18,17 @@ public class longestValidParentheses {
 				stack.push(i);
 			}else{
 				if(stack.isEmpty()){
-					// record the position before first left parenthesis
+					// record the position of first left parenthesis as start
 					start=i+1;
 				}
 				else{
 					stack.pop();
-					// if stack is empty mean the position before the valid left parenthesis is "last"
+					// if stack is empty means all valid pairs are gone,current whole length i-start+1 is longest
 					if (stack.isEmpty()){
 						maxLen=Math.max(i-start+1, maxLen);
 					}
 					else{
-						// if stack is not empty, then for current i the longest valid parenthesis length is
-						// i-stack.peek()
+						// if stack is not empty, then for current i the longest valid parenthesis length is i-stack.peek()
 						maxLen=Math.max(i-stack.peek(),maxLen);
 					}
 				}
