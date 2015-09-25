@@ -2,6 +2,7 @@ package LeetCode;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -35,13 +36,13 @@ public class findWords {
 
         for(int i = 0; i < board.length; i++){
             for(int j = 0; j < board[0].length; j++){
-                if(root.child[board[i][j] - 'a'] != null){
+                if(root.child[board[i][j] - 'a'] != null){//search for string begins with 
                     search(board, i, j, root, "", result);
                 }
             }
         }
 
-        return new LinkedList<>(result);
+        return new LinkedList<String>(result);
     }
 
     private void addToTrie(String[] words){
