@@ -1,0 +1,59 @@
+#col{
+    background-color: #fff;
+    width:30%;  
+    padding: 10px;
+    float: left;
+}
+
+#sort{
+    background-color: #fff;
+    width:30%;  
+    padding: 10px;
+    float: left;
+}
+
+#datagrid {
+    background-color: #fff;
+    color:black;
+    clear:both;
+    text-align:center;
+    padding:5px; 
+    border-collapse:collapse; 
+    width:100%;  
+}
+
+#datagrid.th, td {
+    padding:10px;
+    /*border:2px solid black;*/
+}
+
+.item {
+    font-size: 10px; 
+    font-family: Verdana; 
+    float: left;
+    width:100%;
+}
+
+.item h3 {
+    font-size: 14px; 
+    font-family: Verdana; 
+    /*float: left;  */
+}
+
+.item h4 {
+    font-size: 12px; 
+    font-family: Verdana; 
+    /*float: left;  */
+}
+
+.item .saleprice{
+    font-size: 10px; 
+    font-family: Verdana; 
+    color: red;
+}
+
+.item img{
+    /*height: 450px;*/
+    width:100%;
+    height: 80%;
+}
