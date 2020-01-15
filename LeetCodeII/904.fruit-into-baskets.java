@@ -93,7 +93,7 @@ import java.util.*;
 
 // @lc code=start
 class totalFruitt {
- public int totalFruit(int[] tree) {
+    public int totalFruit(int[] tree) {
         Map<Integer, Integer> count = new HashMap<>();
         int i = 0, j;
         for (j = 0; j < tree.length; ++j) {
@@ -106,10 +106,24 @@ class totalFruitt {
         return j - i;
     }
 
+    public int totalFruit2(int[] tree) {
+        int res = 0, cur = 0, consecutive_second_element = 0, first_element = 0, second_element = 0;
+        for (int c : tree) {
+            cur = c == first_element || c == second_element ? cur + 1 : consecutive_second_element + 1;
+            consecutive_second_element = c == second_element ? consecutive_second_element + 1 : 1;
+            if (second_element != c) {
+                first_element = second_element;
+                second_element = c;
+            }
+            res = Math.max(res, cur);
+        }
+        return res;
+    }
+
     public static void main(String[] args) {
         totalFruitt s = new totalFruitt();
-        int[] arr = {3,3,3,1,2,1,1,2,3,3,4};
-        System.out.println(s.totalFruit(arr));
+        int[] arr = { 3, 3, 3, 1, 2, 1, 1, 2, 3, 3, 4 };
+        System.out.println(s.totalFruit2(arr));
     }
- }
+}
 // @lc code=end
