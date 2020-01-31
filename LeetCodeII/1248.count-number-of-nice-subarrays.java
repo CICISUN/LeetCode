@@ -1,5 +1,4 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /*
  * @lc app=leetcode id=1248 lang=java
@@ -8,18 +7,29 @@ import java.util.Map;
  */
 
 // @lc code=start
-class Solution {
-    // public int numberOfSubarrays(int[] nums, int k) {
-    //     Map<Integer, Integer> window = new HashMap<>();
-    //     int oddCount = 0;
-    //     for(int i=0; i<nums.length; i++) {
-    //         int count = window.getOrDefault(nums[i], 0) + 1;
-    //         if(nums[i] % 2 == 1) {
-    //             oddCount+=1;
-    //         }
-    //     }
-    // }
-    public int numberOfSubarrays(int[] nums, int k) {
+class numberOfSubarrays {
+	public int numberOfSubarrays(int[] nums, int k) {
+        return getMostK(nums, k) - getMostK(nums, k-1);
+    }
+    
+    private int getMostK(int[] nums, int k) {
+        int count = 0;
+        for(int i=0, start=0; i<nums.length ; i++) {
+            if(nums[i] % 2 == 1) {
+                k-=1;
+            }
+            while(k<0) {
+                if(nums[start] % 2 == 1) {
+                    k+=1;
+                }
+                start++;
+            }
+            count += i-start+1;
+        }
+        return count;
+    }
+    
+    public int numberOfSubarrays2(int[] nums, int k) {
         
         int n = nums.length;
         
@@ -40,11 +50,25 @@ class Solution {
         return ans;
         
     }
+    
+    public int numberOfSubarrays3(int[] nums, int k) {
+    	  LinkedList<Integer> deq = new LinkedList();
+    	  deq.add(-1);
+    	  int res = 0;
+    	  for (int i = 0; i < nums.length; ++i) {
+    	    if (nums[i] % 2 == 1) deq.add(i);
+    	    if (deq.size() > k + 1) deq.pop();
+    	    if (deq.size() == k + 1) res += deq.get(1) - deq.get(0);
+    	  }
+    	  return res;
+    }
 
     public static void main(String[] args) {
-        int[] A = {1,1,2,1,1};
-        Solution s = new Solution();
-        System.out.println(s.numberOfSubarrays(A, 3));
+//        int[] A = {1,1,2,1,1};
+        int[] A = {2,2,1,2,1,2,2,1,2,1,2};
+
+        numberOfSubarrays s = new numberOfSubarrays();
+        System.out.println(s.numberOfSubarrays3(A, 2));
     }
 }
 // @lc code=end

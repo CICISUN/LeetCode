@@ -1,7 +1,7 @@
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-class Solution {
+class ShortestSubarray {
     public int shortestSubarray(int[] A, int K) {
         int[] prefixSumArr = new int[A.length+1];
         for(int i=1; i<A.length+1; i++) {
@@ -22,9 +22,9 @@ class Solution {
 
     }
 
-//    public static void main(String[] args) {
-//        Solution s = new Solution();
-//        int[] arr = {84,-37,32,40,95};
-//        s.shortestSubarray(arr, 167);
-//    }
+   public static void main(String[] args) {
+    ShortestSubarray s = new ShortestSubarray();
+       int[] arr = {84,-37,32,40,95};
+       s.shortestSubarray(arr, 167);
+   }
 }
