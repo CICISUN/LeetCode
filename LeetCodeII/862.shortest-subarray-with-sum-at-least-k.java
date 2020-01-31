@@ -7,11 +7,11 @@ class shortestSubarray {
         for(int i=1; i<A.length+1; i++) {
             prefixSumArr[i] = prefixSumArr[i-1] + A[i-1];
         }
-        // q stores possible start indexes, q ensures we have increasing prefix sum in q
+        // q stores possible start indexes, ensures we have increasing prefix sum in q
         Deque<Integer> q = new ArrayDeque<>();
         int res = Integer.MAX_VALUE;
         for(int i=0; i<A.length+1; i++) {
-            // sum decreases, start not valid, remove tail from q
+            // sum decreases, start not valid, remove tails from q
             while(!q.isEmpty() && prefixSumArr[q.peekLast()] >= prefixSumArr[i]) {
                 q.removeLast();
             }
