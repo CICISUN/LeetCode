@@ -30,6 +30,7 @@ class LengthOfLongestSubstring {
         int[256] for Extended ASCII
      * @param s
      * @return
+     * Time O(n) Space O(1)
      */
 
     public int lengthOfLongestSubstring2(String s) {
