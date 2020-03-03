@@ -95,10 +95,47 @@ class GraphValidTree{
     }
     
     private static int find(int[] roots, int i){
-        while(roots[i] != -1) {
+        while(roots[i] != -1) {  // roots[i]==-1 means i is the leader 
             i=roots[i];
         }
         return i;
+    }
+
+    private static int findWithCompression(int[] roots, int i){
+        if (roots[i] == i) {
+            return i;
+        }
+        roots[i] = findWithCompression(roots, roots[i]); // compress
+        return roots[i];
+    }
+
+    //https://github.com/awangdev/LintCode/blob/master/Java/Number%20of%20Connected%20Components%20in%20an%20Undirected%20Graph.java
+    //Number of Connected Components in an Undirected Graph.
+    // easy to solve using dfs as well -
+    // for (int i = 0; i < n; i++) {
+    //     if (!visited[i]) {
+    //         dfs(graph, visited, i);
+    //         count++;
+    //     }
+    // }
+
+    public static int countComponents(int n, int[][] edges) {
+        int[] roots = new int[n];
+        int count=n;
+        for (int i = 0; i < n; i++) {
+            roots[i] = i;
+        }
+        for(int[] edge: edges){
+            int group_a = findWithCompression(roots, edge[0]);
+            int group_b = findWithCompression(roots, edge[1]);
+            //union
+            if(group_a != group_b) {
+                roots[group_a] = group_b;
+                count--;
+            }
+        }
+        //jungle
+        return count;
     }
 
 
@@ -115,6 +152,11 @@ class GraphValidTree{
             {0,2},
             {0,3},
         };
+        int[][] edges_jungle_2 = {
+            {0,1},
+            {1,2},
+            {4,3},
+        };
 
         int[][] edges_tree = {
             {0,1},
@@ -122,10 +164,11 @@ class GraphValidTree{
             {0,3},
             {1,4},
         };
-        for(int[][] edges: Arrays.asList(edges_cycle, edges_jungle, edges_tree)){
+        for(int[][] edges: Arrays.asList(edges_cycle, edges_jungle, edges_jungle_2,edges_tree)){
             System.out.println("bfs: " + GraphValidTree.validTreeBFS(5, edges));
             System.out.println("dfs: " + GraphValidTree.validTreeDFS(5, edges));
             System.out.println("uf: " + GraphValidTree.validTreeUF(5, edges));
+            System.out.println("connected count: " + GraphValidTree.countComponents(5, edges));
 
         }
     }
